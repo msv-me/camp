@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Communication Camp Flyer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30px 16px;
+      font-family: 'Nunito', Arial, sans-serif;
+    }
+
+    .flyer {
+      width: 680px;
+      background: #fff;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 40%, #FBBF24 80%, #FDE68A 100%);
+      padding: 36px 32px 28px;
+      text-align: center;
+      position: relative;
+    }
+    .header h1 {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      font-size: 48px;
+      color: #fff;
+      text-shadow: 2px 3px 8px rgba(0,0,0,0.35);
+      letter-spacing: 2px;
+      line-height: 1.1;
+    }
+    .header .megaphone {
+      font-size: 42px;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .header .subtitle {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 600;
+      font-size: 15.5px;
+      color: #fff;
+      text-shadow: 1px 2px 5px rgba(0,0,0,0.3);
+      margin-top: 10px;
+      line-height: 1.55;
+    }
+    .header .time-badge {
+      display: inline-block;
+      margin-top: 14px;
+      background: rgba(255,255,255,0.25);
+      border: 2px solid rgba(255,255,255,0.6);
+      border-radius: 50px;
+      padding: 5px 22px;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 700;
+      font-size: 15px;
+      color: #fff;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+    }
+
+    /* ── BODY PADDING ── */
+    .body {
+      padding: 24px 28px 20px;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-heading {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 700;
+      font-size: 20px;
+      color: #2d3748;
+      margin-bottom: 12px;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── SCHEDULE GRID ── */
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .schedule-box {
+      border-radius: 18px;
+      padding: 18px 16px 16px;
+    }
+    .schedule-box.early { background: #C6F6D5; }
+    .schedule-box.later { background: #FFD8A8; }
+
+    .schedule-box .box-title {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 700;
+      font-size: 16.5px;
+      color: #1a202c;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .schedule-box .bubble-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .schedule-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    .schedule-box ul li {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #2d3748;
+      padding: 3px 0;
+      border-bottom: 1px dashed rgba(0,0,0,0.1);
+      line-height: 1.4;
+    }
+    .schedule-box ul li:last-child { border-bottom: none; }
+
+    /* ── COMPLETE EXPERIENCE ── */
+    .experience-box {
+      background: #FFF089;
+      border-radius: 18px;
+      padding: 18px 24px;
+      text-align: center;
+      margin-bottom: 18px;
+      border: 2px solid #F6C90E;
+    }
+    .experience-box h2 {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      font-size: 19px;
+      color: #92400e;
+      margin-bottom: 8px;
+    }
+    .experience-box p {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #44403c;
+      line-height: 1.55;
+      margin-bottom: 10px;
+    }
+    .experience-box .pricing {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      font-size: 22px;
+      color: #b45309;
+    }
+    .experience-box .pricing span {
+      font-size: 14px;
+      color: #78350f;
+      font-weight: 700;
+    }
+
+    /* ── BENEFITS GRID ── */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .benefit-box {
+      border-radius: 18px;
+      padding: 18px 16px 16px;
+    }
+    .benefit-box.parents { background: #BEE3F8; }
+    .benefit-box.kids    { background: #D4F4DD; }
+
+    .benefit-box h3 {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 700;
+      font-size: 15.5px;
+      color: #1a202c;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .benefit-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    .benefit-box ul li {
+      font-size: 13px;
+      font-weight: 600;
+      color: #2d3748;
+      padding: 4px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      line-height: 1.45;
+    }
+    .check-icon {
+      color: #22c55e;
+      font-weight: 900;
+      font-size: 15px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .emoji-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    /* ── REGISTRATION ── */
+    .registration-box {
+      background: linear-gradient(135deg, #FFB6B9 0%, #D9B8FF 100%);
+      border-radius: 18px;
+      padding: 22px 24px 18px;
+      text-align: center;
+      margin-bottom: 0;
+    }
+    .registration-box h2 {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      font-size: 20px;
+      color: #fff;
+      text-shadow: 1px 2px 5px rgba(0,0,0,0.2);
+      margin-bottom: 10px;
+    }
+    .registration-box p {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+    .registration-box .field-line {
+      display: inline-block;
+      width: 65%;
+      border-bottom: 2px solid rgba(255,255,255,0.7);
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+    .register-btn {
+      display: inline-block;
+      margin-top: 14px;
+      background: #fff;
+      color: #9333ea;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      font-size: 17px;
+      padding: 10px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      letter-spacing: 0.5px;
+    }
+    .spots-badge {
+      display: inline-block;
+      margin-top: 10px;
+      background: rgba(255,255,255,0.3);
+      border: 2px solid rgba(255,255,255,0.7);
+      border-radius: 50px;
+      padding: 4px 18px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    }
+
+    /* ── FOOTER STRIP ── */
+    .footer-strip {
+      background: linear-gradient(90deg, #3B82F6, #FBBF24);
+      height: 8px;
+    }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .flyer { box-shadow: none; border-radius: 0; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="flyer">
+
+  <!-- HEADER -->
+  <div class="header">
+    <span class="megaphone">📣</span>
+    <h1>COMMUNICATION CAMP</h1>
+    <div class="subtitle">
+      Enhancing Language Skills &amp; Speech Sound Skills<br>
+      Summer Camp &nbsp;|&nbsp; Incoming Kindergarten &amp; 1st Grade Students
+    </div>
+    <div class="time-badge">⏰ &nbsp;2:00 – 4:00 PM</div>
+  </div>
+
+  <div class="body">
+
+    <!-- SCHEDULE -->
+    <div class="section-heading">🗓️ Camp Schedule — 4 Days Total</div>
+    <div class="schedule-grid">
+
+      <div class="schedule-box early">
+        <div class="box-title">
+          <span class="bubble-icon">💬</span>
+          Days 1–2:<br>Early Developing Sounds
+        </div>
+        <ul>
+          <li>P, B, M, T, D, N, K, G, F, H</li>
+          <li>Final consonants</li>
+          <li>Clear speech in words and sentences</li>
+        </ul>
+      </div>
+
+      <div class="schedule-box later">
+        <div class="box-title">
+          <span class="bubble-icon">🗣️</span>
+          Days 3–4:<br>Later Developing Sounds
+        </div>
+        <ul>
+          <li>R, L, S, Z, SH, CH, J, TH</li>
+          <li>Blends (sp, st, tr, bl)</li>
+          <li>Clear speech in conversation</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- COMPLETE EXPERIENCE -->
+    <div class="experience-box">
+      <h2>⭐ Complete 4-Day Experience</h2>
+      <p>Enroll in the full 4-day camp for comprehensive practice<br>targeting both early and later developing speech sounds.</p>
+      <p style="font-size:13px; color:#78350f;">2:00 – 4:00 PM each day</p>
+      <div class="pricing">$500 <span>for the full program</span></div>
+    </div>
+
+    <!-- BENEFITS -->
+    <div class="benefits-grid">
+
+      <div class="benefit-box parents">
+        <h3>💙 Why Parents<br>Love This Camp</h3>
+        <ul>
+          <li><span class="check-icon">✔</span> Engaging games and movement-based activities</li>
+          <li><span class="check-icon">✔</span> Individual feedback and targeted instruction</li>
+          <li><span class="check-icon">✔</span> Builds confidence before the school year begins</li>
+        </ul>
+      </div>
+
+      <div class="benefit-box kids">
+        <h3>💚 Why Kids<br>Love This Camp</h3>
+        <ul>
+          <li><span class="emoji-icon">🌟</span> Engaging inside and outside activities</li>
+          <li><span class="emoji-icon">🍎</span> Eat a snack while practicing social communication</li>
+          <li><span class="emoji-icon">🎉</span> Encouraged to talk, share, and express themselves</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- REGISTRATION -->
+    <div class="registration-box">
+      <h2>📋 Registration &amp; Location</h2>
+      <p>
+        <strong>Who:</strong> Incoming Kindergarten &amp; 1st Grade
+      </p>
+      <p>
+        <strong>To register or learn more:</strong>
+        <span class="field-line">&nbsp;</span>
+      </p>
+      <p>
+        <strong>Location:</strong>
+        <span class="field-line">&nbsp;</span>
+      </p>
+      <br>
+      <div class="register-btn">🎯 Register Today!</div>
+      <br>
+      <div class="spots-badge">⚡ Spots are Limited!</div>
+    </div>
+
+  </div>
+
+  <div class="footer-strip"></div>
+</div>
+</body>
+</html>
