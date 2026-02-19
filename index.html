@@ -255,6 +255,12 @@
       text-decoration: none;
       box-shadow: 0 4px 14px rgba(0,0,0,0.15);
       letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .register-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     }
     .spots-badge {
       display: inline-block;
@@ -371,7 +377,7 @@
         <strong>Location: SLC - More Details Coming Soon</strong>
       </p>
       <br>
-      <div class="register-btn">🎯 Register Today!</div>
+      <a href="register.html" class="register-btn">🎯 Register Today!</a>
       <br>
       <div class="spots-badge">⚡ Spots are Limited!</div>
     </div>
