@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register — Communication Camp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30px 16px;
+      font-family: 'Nunito', Arial, sans-serif;
+    }
+
+    .form-container {
+      width: 560px;
+      background: #fff;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 40%, #FBBF24 80%, #FDE68A 100%);
+      padding: 28px 32px 22px;
+      text-align: center;
+    }
+    .header h1 {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      font-size: 32px;
+      color: #fff;
+      text-shadow: 2px 3px 8px rgba(0,0,0,0.35);
+      letter-spacing: 1px;
+    }
+    .header .subtitle {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 600;
+      font-size: 14px;
+      color: #fff;
+      text-shadow: 1px 2px 5px rgba(0,0,0,0.3);
+      margin-top: 6px;
+    }
+
+    /* ── FORM ── */
+    .form-body {
+      padding: 28px 32px 32px;
+    }
+
+    .section-label {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 700;
+      font-size: 17px;
+      color: #3B82F6;
+      margin-bottom: 14px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #E2E8F0;
+    }
+
+    .section-label + .section-label,
+    .form-row + .section-label {
+      margin-top: 24px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .form-row.single {
+      grid-template-columns: 1fr;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      font-size: 13px;
+      color: #4A5568;
+      margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 2px solid #E2E8F0;
+      border-radius: 12px;
+      font-family: 'Nunito', Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #2D3748;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: #3B82F6;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+    }
+
+    .form-group input::placeholder {
+      color: #A0AEC0;
+      font-weight: 400;
+    }
+
+    /* ── SUBMIT BUTTON ── */
+    .submit-btn {
+      display: block;
+      width: 100%;
+      margin-top: 24px;
+      background: linear-gradient(135deg, #9333ea 0%, #7C3AED 100%);
+      color: #fff;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      font-size: 18px;
+      padding: 14px 36px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(147,51,234,0.3);
+      letter-spacing: 0.5px;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(147,51,234,0.4);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ── BACK LINK ── */
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 16px;
+      font-weight: 700;
+      font-size: 13px;
+      color: #9333ea;
+      text-decoration: none;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ── STATUS MESSAGES ── */
+    .status-msg {
+      text-align: center;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      margin-top: 16px;
+      display: none;
+    }
+    .status-msg.success {
+      background: #C6F6D5;
+      color: #276749;
+      display: block;
+    }
+    .status-msg.error {
+      background: #FED7D7;
+      color: #9B2C2C;
+      display: block;
+    }
+
+    /* ── FOOTER STRIP ── */
+    .footer-strip {
+      background: linear-gradient(90deg, #3B82F6, #FBBF24);
+      height: 8px;
+    }
+  </style>
+</head>
+<body>
+<div class="form-container">
+
+  <div class="header">
+    <h1>📣 COMMUNICATION CAMP</h1>
+    <div class="subtitle">Registration Form — Summer 2025</div>
+  </div>
+
+  <div class="form-body">
+    <form id="registrationForm">
+
+      <div class="section-label">👤 Parent / Guardian Information</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="parentFirst">First Name</label>
+          <input type="text" id="parentFirst" name="parentFirst" placeholder="First name" required />
+        </div>
+        <div class="form-group">
+          <label for="parentLast">Last Name</label>
+          <input type="text" id="parentLast" name="parentLast" placeholder="Last name" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="parent@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required />
+        </div>
+      </div>
+
+      <div class="section-label">🧒 Child Information</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="childFirst">Child's First Name</label>
+          <input type="text" id="childFirst" name="childFirst" placeholder="First name" required />
+        </div>
+        <div class="form-group">
+          <label for="childLast">Child's Last Name</label>
+          <input type="text" id="childLast" name="childLast" placeholder="Last name" required />
+        </div>
+      </div>
+
+      <div class="form-row single">
+        <div class="form-group">
+          <label for="schoolYear">Child's School Year (2026–2027)</label>
+          <select id="schoolYear" name="schoolYear" required>
+            <option value="" disabled selected>Select grade level</option>
+            <option value="Incoming Kindergarten">Incoming Kindergarten</option>
+            <option value="Incoming 1st Grade">Incoming 1st Grade</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">🎯 Submit Registration</button>
+
+      <div id="statusMsg" class="status-msg"></div>
+
+      <a href="communication_camp_flyer.html" class="back-link">← Back to Camp Info</a>
+    </form>
+  </div>
+
+  <div class="footer-strip"></div>
+</div>
+
+<script>
+  // ============================================================
+  // IMPORTANT: Replace this URL with your Google Apps Script
+  // web app URL after deploying (see google_apps_script.js)
+  // ============================================================
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxVgXyuM0xvqK9FGmhmqe4UrANa41Mft6etfYjLcNyv158-1br8LEVMO8_kLz6MNhoj3w/exec';
+
+  const form = document.getElementById('registrationForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const statusMsg = document.getElementById('statusMsg');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    if (GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+      statusMsg.className = 'status-msg error';
+      statusMsg.textContent = 'Form not yet connected. Please follow the setup instructions in google_apps_script.js.';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+    statusMsg.className = 'status-msg';
+    statusMsg.style.display = 'none';
+
+    const data = {
+      parentFirst: form.parentFirst.value.trim(),
+      parentLast: form.parentLast.value.trim(),
+      email: form.email.value.trim(),
+      phone: form.phone.value.trim(),
+      childFirst: form.childFirst.value.trim(),
+      childLast: form.childLast.value.trim(),
+      schoolYear: form.schoolYear.value
+    };
+
+    try {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      // no-cors means we can't read the response, so assume success
+      statusMsg.className = 'status-msg success';
+      statusMsg.textContent = 'Registration submitted successfully! We\'ll be in touch soon.';
+      form.reset();
+    } catch (err) {
+      statusMsg.className = 'status-msg error';
+      statusMsg.textContent = 'Something went wrong. Please try again or contact us directly.';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = '🎯 Submit Registration';
+    }
+  });
+</script>
+</body>
+</html>
