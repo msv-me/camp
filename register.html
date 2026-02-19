@@ -166,15 +166,67 @@
       margin-top: 16px;
       display: none;
     }
-    .status-msg.success {
-      background: #C6F6D5;
-      color: #276749;
-      display: block;
-    }
     .status-msg.error {
       background: #FED7D7;
       color: #9B2C2C;
       display: block;
+    }
+
+    /* ── SUCCESS SCREEN ── */
+    .success-screen {
+      display: none;
+      padding: 48px 32px 40px;
+      text-align: center;
+    }
+    .success-screen.visible {
+      display: block;
+    }
+    .success-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+    .success-screen h2 {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      font-size: 26px;
+      color: #276749;
+      margin-bottom: 12px;
+    }
+    .success-screen p {
+      font-size: 15px;
+      font-weight: 600;
+      color: #4A5568;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    .success-screen .confirmation-box {
+      background: #C6F6D5;
+      border: 2px solid #68D391;
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+    .success-screen .confirmation-box p {
+      color: #276749;
+      margin-bottom: 0;
+    }
+    .success-screen .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
+      color: #fff;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      font-size: 16px;
+      padding: 12px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(59,130,246,0.3);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .success-screen .back-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(59,130,246,0.4);
     }
 
     /* ── FOOTER STRIP ── */
@@ -251,6 +303,18 @@
     </form>
   </div>
 
+  <!-- SUCCESS SCREEN (replaces form after submission) -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">🎉</div>
+    <h2>You're Registered!</h2>
+    <div class="confirmation-box">
+      <p>Your registration has been submitted successfully.</p>
+    </div>
+    <p>We'll review your information and be in touch soon<br>with next steps and camp details.</p>
+    <p style="font-size: 13px; color: #718096;">A spot has been reserved for <strong><span id="childNameConfirm"></span></strong>.</p>
+    <a href="communication_camp_flyer.html" class="back-btn">← Back to Camp Info</a>
+  </div>
+
   <div class="footer-strip"></div>
 </div>
 
@@ -297,14 +361,15 @@
         body: JSON.stringify(data)
       });
 
-      // no-cors means we can't read the response, so assume success
-      statusMsg.className = 'status-msg success';
-      statusMsg.textContent = 'Registration submitted successfully! We\'ll be in touch soon.';
+      // Show the success screen
+      document.getElementById('childNameConfirm').textContent = data.childFirst;
+      document.querySelector('.form-body').style.display = 'none';
+      document.getElementById('successScreen').classList.add('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       form.reset();
     } catch (err) {
       statusMsg.className = 'status-msg error';
       statusMsg.textContent = 'Something went wrong. Please try again or contact us directly.';
-    } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = '🎯 Submit Registration';
     }
